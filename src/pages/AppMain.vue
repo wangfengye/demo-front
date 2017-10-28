@@ -1,16 +1,15 @@
 
 <template>
   <div id="main-container" :class="{hideNav: isCollapse}">
-    <nav-menu class="nav" :routeData="routeDatas" :collapse="isCollapse" />
+    <nav-menu class="nav" :collapse="isCollapse" />
     <div class="main">
       <el-menu mode="horizontal">
         <hamburger class="hamburger" :isActive='isCollapse' :toggleClick="changeCollapse" />
         <levelbar class="levelbar" />
-        <i @click="logout"  class="el-icon-upload2 logout"></i>
+        <i  @click="handleClose"  class="el-icon-upload2 logout"></i>
       </el-menu>
       <router-view class="container" />
     </div>
-
   </div>
 </template>
 
@@ -22,10 +21,8 @@ import Cookies from 'js-cookie'
 export default {
   data () {
     return {
-      routeDatas: [{title: '简述', url: '/sketch'},
-                   {title: 'APP管理', children: [{ url: '/app/main', title: '软件列表' }, { url: '/app/add', title: '添加应用'}]},
-                   {title: '个性评论', url: '/quote'}],
-      isCollapse: false
+      isCollapse: false,
+      dialogVisible: false
     }
   },
   components: {
@@ -34,11 +31,20 @@ export default {
   methods: {
     changeCollapse () {
       this.isCollapse = !this.isCollapse
+      console.log(this.addRouters)
     },
     logout () {
-      Cookies.remove('login_role')
+      Cookies.remove('Token')
       location.reload()// 为了重新实例化vue-router对象 避免bug
-      console.log('login_role: ' + Cookies.get('login_role'))
+      console.log('login_role: ' + Cookies.get('Token'))
+    },
+    handleClose (done) {
+      this.$confirm('确认退出登录？')
+        .then(_ => {
+          this.logout()
+          done()
+        })
+        .catch(_ => {})
     }
   }
 }
@@ -58,6 +64,7 @@ export default {
   .main {
     transition: width 0.28s linear;
     margin-left: 200px;
+   min-height: 100%;
   }
   &.hideNav {
     .nav {
@@ -89,6 +96,9 @@ export default {
     margin-right:20px; 
     line-height: 58px;
   }
+}
+.container{
+    padding: 16px;
 }
 </style>
 

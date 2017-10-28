@@ -71,4 +71,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * [nanobar进度条](http://nanobar.jacoborus.codes/)
 
 #### 10/26
-*[clipboard插件](https://clipboardjs.com/#example-action)
+* [clipboard插件](https://clipboardjs.com/#example-action)
+* 添加 个性评论

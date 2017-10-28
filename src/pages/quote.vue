@@ -8,15 +8,15 @@
     <div id="style" v-html="style"></div>
 
     <el-table :data="data" style="width:100%" >
-    <el-table-column label="ID" prop="id" width="80"></el-table-column>
-      <el-table-column prop="content" label="内容" width="720">
+    <el-table-column label="ID" prop="id" width="60"></el-table-column>
+      <el-table-column prop="content" label="内容">
           <template scope="scope">
           <div v-html="stringToHtml(scope.row.content)"></div>
         </template>
       </el-table-column>
        <el-table-column label="操作">
         <template scope="scope">
-          <el-button :value="scope.row.content" class="btn-left" type="primary" size="mini">复制</el-button>
+          <el-button :value="scope.row.content" type="primary" size="mini">复制</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -101,8 +101,5 @@ export default {
 <style lang='scss' scoped>
 .container{
   padding: 16px;
-}
-.btn-left{
-  float: left;
 }
 </style>

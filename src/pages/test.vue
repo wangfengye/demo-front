@@ -2,7 +2,7 @@
   <div>
     <el-button @click="dispatch">dispatch</el-button>
     <el-button @click="commit">commit</el-button>
-    <el-button @click="log">log</el-button>
+    <el-button @click="testIndexOf">indexof</el-button>
   </div>
 </template>
 
@@ -33,6 +33,10 @@ export default {
     },
     log () {
       console.log(this.$store.getters.aa)
+    },
+    testIndexOf () {
+      var cts = "bblText"
+      alert(cts.indexOf('ac') > 0)
     }
   }
 }

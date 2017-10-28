@@ -23,12 +23,13 @@
 </template>
 
 <script>
-// import {asyncRouterMap} from '../router'
-import Cookies from 'js-cookie'
 export default {
   data () {
     const validatePassword = (rule, value, callback) => {
-      if (value != null && value.length < 6) {
+      if (!value) {
+        return callback(new Error('密码不能为空'))
+      }
+      if (value.length < 6) {
         callback(new Error('密码不能小于6位'))
       } else {
         callback()
@@ -37,8 +38,8 @@ export default {
     return {
       loginForm: { account: null, password: null },
       loginRules: {
-        account: [{ required: true, message: '账号不能为空', trigger: 'blur,change' }],
-        password: [{ required: true, trigger: 'blur,change', validator: validatePassword }]
+        account: [{required: true, message: '账号不能为空', trigger: 'blur,change'}],
+        password: [{validator: validatePassword, trigger: 'blur,change'}]
       }
     }
   },
@@ -57,9 +58,11 @@ export default {
     },
     checkLogin () {
       if (this.loginForm != null) {
-        Cookies.set('login_role', this.loginForm.account, 1)
-        this.$message.success('登录成功')
-        this.$router.push('/')
+        console.log(this.loginForm)
+        this.$store.dispatch('login', {account: this.loginForm.account, password: this.loginForm.password}).then(() => {
+          this.$message.success('登录成功')
+          this.$router.push('/')
+        })
       } else {
         this.$message.error('登录失败')
       }

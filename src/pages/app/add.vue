@@ -11,7 +11,7 @@
         <el-input type="number" v-model="form.code"></el-input>
       </el-form-item>
       <el-form-item label="上传应用">
-        <el-upload class="upload-demo" :action="uploadUrl" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" :on-success="uploadSuccess">
+        <el-upload class="upload-demo" :action="uploadUrl" :on-preview="handlePreview" :on-error="uploadError" :on-remove="handleRemove" :file-list="fileList" :on-success="uploadSuccess">
           <el-button :disabled="!canUpload" size="small" multiple="false" icon="upload" type="primary">点击上传</el-button>
         </el-upload>
       </el-form-item>
@@ -32,11 +32,12 @@
 </template>
 
 <script>
+import {saveApp} from '@/api/app'
 export default {
   data () {
     return {
       fileList: [],
-      uploadUrl: 'http://192.168.168.39:8888/file/upload',
+      uploadUrl: process.env.BASE_API + '/file/upload',
       mainThis: '',
       canUpload: true,
       form: {
@@ -59,8 +60,10 @@ export default {
       this.form.updateDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
     },
     onSubmit () {
-      let _this = this
-      console.log('form' + _this.version)
+      saveApp(this.form).then(response => {
+        console.info(response)
+        this.$message.success('提交成功')
+      })
     },
     handlePreview (file) { // 可选参数, 点击已上传的文件链接时的钩子, 可以通过 file.response 拿到服务端返回数据
       console.log(file)
@@ -70,13 +73,21 @@ export default {
     },
     uploadSuccess (response) {
       if (response.code === 200) {
+        this.$message.success('文件上传成功')
         this.form.apkUrl = response
+        console.info('上传成功: ')
+        console.info(response)
         this.canUpload = false
       } else {
         this.$message.error('文件上传失败')
         this.form.apkUrl = null
         this.fileList.splice(0, this.fileList.length)
       }
+    },
+    uploadError (err, file, fileList) {
+      this.$message.error('文件上传失败')
+      console.info('上传失败: ')
+      console.info(err)
     }
   }
 }

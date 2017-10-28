@@ -1,23 +1,35 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import permission from './modules/permission'
+import Cookies from 'js-cookie'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  modules: {
+    permission
+  },
   state: {
-    aa: 'sss55555555555555555'
+    login: false
   },
   getters: {
-    aa: state => state.aa
+    mainRouters: state => state.permission.mainRouters,
+    addRouters: state => state.permission.addRouters,
+    permissionFinished: state => state.permission.isFinished,
+    login: state => state.login
   },
   mutations: {
-    aa (state, s) { state.aa = s }
+    login (state, role) {
+      Cookies.set('Token', role, 10)
+      state.login = true
+    }
   },
   actions: {
-    aa ({commit}, s) {
-      setTimeout(() => {
-        commit('aa', s)
-      }, 3000)
+    login ({commit}, data) {
+      return new Promise(resolve => {
+        commit('login', data.account)
+        resolve()
+      })
     }
   }
 })

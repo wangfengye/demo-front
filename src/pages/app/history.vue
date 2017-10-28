@@ -18,7 +18,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template scope="scope" >
-          <el-button class="btn_download" v-on:click="download(scope.row.apkUrl)" type="primary" size="mini">下载</el-button>
+          <el-button v-on:click="download(scope.row.apkUrl)" type="primary" size="mini">下载</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -27,23 +27,20 @@
 </template>
 
 <script>
-import axios from 'axios'
+import {findByName} from '@/api/appVersion'
 export default {
   data () {
     return {
-      apkVersions: [],
-      name: ''
+      apkVersions: []
     }
   },
   mounted () {
-    this.name = this.$route.query.name
     this.initData()
   },
   methods: {
     initData () {
       let _this = this
-      axios.get('http://192.168.168.39:8888/api/appVersion/' + this.name)
-      .then(function (response) {
+      findByName(this.$route.query.name).then(function (response) {
         _this.apkVersions = response.data
         console.log(_this.apkVersions)
       })
@@ -74,7 +71,5 @@ export default {
   float: left;
   text-align: left;
 }
-.btn_download{
-float: left;
-}
+
 </style>
