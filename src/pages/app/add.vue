@@ -74,7 +74,7 @@ export default {
     uploadSuccess (response) {
       if (response.code === 200) {
         this.$message.success('文件上传成功')
-        this.form.apkUrl = response
+        this.form.apkUrl = response.data
         console.info('上传成功: ')
         console.info(response)
         this.canUpload = false

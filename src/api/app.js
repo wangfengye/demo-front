@@ -15,16 +15,12 @@ export function findByName (name) {
 }
 
 export function saveApp (form) {
-  return fetch({
-    url: 'api/app',
-    method: 'post',
-    data: {
-      name: 's',
-      version: form.version,
-      code: form.code,
-      apkUrl: form.apkUrl,
-      desc: form.desc,
-      updateDate: form.updateDate
-    }
+  return fetch.postp('api/app', {
+    name: form.name,
+    version: form.version,
+    code: form.code,
+    apkUrl: form.apkUrl,
+    desc: form.desc,
+    updateDate: form.updateDate
   })
 }

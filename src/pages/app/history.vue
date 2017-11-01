@@ -49,7 +49,7 @@ export default {
       })
     },
     download (url) {
-      window.location.href = url
+      window.location.href = process.env.BASE_API + '/' + url
       console.log(url)
     },
     expand (row, expanded) {

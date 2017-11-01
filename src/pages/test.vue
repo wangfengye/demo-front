@@ -35,8 +35,9 @@ export default {
       console.log(this.$store.getters.aa)
     },
     testIndexOf () {
-      var cts = "bblText"
-      alert(cts.indexOf('ac') > 0)
+      let data = {name: 'w', age: 2}
+      data._method = 'delete'
+      console.log(data)
     }
   }
 }

@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
+// axios默认发送数据时，数据格式是Request Payload ,qs 用于转换post参数,
+import qs from 'qs'
 
 /**
  * 自定的fetch 实际使用的是axios
@@ -37,5 +39,23 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
+service.put = function (url, data) {
+  if (typeof data === 'undefined') {
+    data = {_method: 'put'}
+  } else {
+    data._method = 'put'
+  }
+  return service.post(url, qs.stringify(data))
+}
+service.delete = function (url, data) {
+  if (typeof data === 'undefined') {
+    data = {_method: 'delete'}
+  } else {
+    data._method = 'delete'
+  }
+  return service.post(url, qs.stringify(data))
+}
+service.postp = function (url, data) {
+  return service.post(url, qs.stringify(data))
+}
 export default service

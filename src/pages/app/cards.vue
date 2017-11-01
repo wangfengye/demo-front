@@ -1,7 +1,7 @@
 <template>
   <div id="app-main-container">
     <el-row class="content" :hidden="isContentHidden">
-      <el-col :span="8" v-for="(o, index) in apks" :key="index">
+      <el-col :span="6" v-for="(o, index) in apks" :key="index">
         <el-card :body-style="{ padding: '0px' }" class="card">
           <div style="padding: 14px;">
             <p class="title">{{o.name}} <span class="hint">{{o.version}}</span></p>
@@ -43,7 +43,7 @@ export default {
         })
     },
     download (url) {
-      window.location.href = url
+      window.location.href = process.env.BASE_API + '/' + url
     },
     linkToHistory (name) {
       this.$router.push({path: './main/history', query: { name: name }})
@@ -73,7 +73,7 @@ export default {
 
 .content {
   position: absolute;
-  width: 100vh;
+  width: 100%;
 }
 .title{
   font-size: 24px;
