@@ -73,3 +73,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 #### 10/26
 * [clipboard插件](https://clipboardjs.com/#example-action)
 * 添加 个性评论
+
+#### 11/3
+* Q:权限
+
+#### 11/9
+* 每日美图

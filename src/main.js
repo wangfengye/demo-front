@@ -16,9 +16,9 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 const nanobar = new Nanobar()
 router.beforeEach((to, from, next) => {
+  console.log(Cookies.get('Token'))
   nanobar.go(0)
   if (Cookies.get('Token')) {
-    console.log(store.getters.permissionFinished)
     if (!store.getters.permissionFinished) {
       store.dispatch('GenerateRoutes', Cookies.get('Token')).then(() => {
         router.addRoutes(store.getters.mainRouters)

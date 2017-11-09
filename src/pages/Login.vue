@@ -59,9 +59,13 @@ export default {
     checkLogin () {
       if (this.loginForm != null) {
         console.log(this.loginForm)
-        this.$store.dispatch('login', {account: this.loginForm.account, password: this.loginForm.password}).then(() => {
-          this.$message.success('登录成功')
-          this.$router.push('/')
+        this.$store.dispatch('login', {account: this.loginForm.account, password: this.loginForm.password}).then(login => {
+          if (login) {
+            this.$message.success('登录成功')
+            this.$router.push('/')
+          } else {
+            this.$message.error('登录失败')
+          }
         })
       } else {
         this.$message.error('登录失败')
@@ -73,7 +77,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/mixin.scss";
-$bg:#2d3a4b;
+$bg:#f0f8ff;;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 #container {
