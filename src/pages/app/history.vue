@@ -2,7 +2,7 @@
   <div id="content">
     <el-table :data="apkVersions" style="width:100%" v-on:expand="expand">
       <el-table-column label="详情" type="expand">
-        <template scope="scope">
+        <template slot-scope="scope">
           <div class="markdown" v-html="scope.row.desc"></div>
         </template>
       </el-table-column>
@@ -11,13 +11,13 @@
       <el-table-column label="内部编号" prop="code">
       </el-table-column>
       <el-table-column label="发布时间" prop="updateDate">
-        <template scope="scope">
+        <template slot-scope="scope">
           <el-icon name="time"></el-icon>
           <span style="margin-left: 10px">{{ scope.row.updateDate }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作">
-        <template scope="scope" >
+        <template slot-scope="scope">
           <el-button v-on:click="download(scope.row.apkUrl)" type="primary" size="mini">下载</el-button>
         </template>
       </el-table-column>

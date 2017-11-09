@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
   if (Cookies.get('Token')) {
     if (!store.getters.permissionFinished) {
       store.dispatch('GenerateRoutes', Cookies.get('Token')).then(() => {
-        router.addRoutes(store.getters.mainRouters)
+        router.addRoutes(store.getters.addRouters)
         next(to.path)
       })
     } else {
