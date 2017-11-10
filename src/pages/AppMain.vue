@@ -6,6 +6,7 @@
       <el-menu mode="horizontal">
         <hamburger class="hamburger" :isActive='isCollapse' :toggleClick="changeCollapse" />
         <levelbar class="levelbar" />
+        <strong class="logout">{{account}}</strong>
         <i  @click="handleClose"  class="el-icon-upload2 logout"></i>
       </el-menu>
       <router-view class="container" />
@@ -18,6 +19,7 @@ import Hamburger from '../components/hamburger'
 import Levelbar from './layout/levelbar'
 import NavMenu from './layout/navMenu'
 import Cookies from 'js-cookie'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -27,6 +29,9 @@ export default {
   },
   components: {
     Hamburger, Levelbar, NavMenu
+  },
+  computed: {
+    ...mapGetters(['account'])
   },
   methods: {
     changeCollapse () {
@@ -58,12 +63,12 @@ export default {
   .nav {
     z-index: 1001;
     transition: width 0.28s linear;
-    width: 200px;
+    width: 201px;
     position: fixed;
   }
   .main {
     transition: width 0.28s linear;
-    margin-left: 200px;
+   margin-left: 200px;
    min-height: 100%;
   }
   &.hideNav {

@@ -7,7 +7,7 @@
   <div class="container">
     <div id="style" v-html="style"></div>
 
-    <el-table :data="data" style="width:100%" >
+    <el-table align="left" :data="data" style="width:100%" stripe>
     <el-table-column label="ID" prop="id" width="60"></el-table-column>
       <el-table-column prop="content" label="内容">
           <template slot-scope="scope">

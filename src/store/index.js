@@ -11,23 +11,28 @@ const store = new Vuex.Store({
     permission
   },
   state: {
-    login: false
+    login: false,
+    account: null
   },
   getters: {
     mainRouters: state => state.permission.mainRouters,
     addRouters: state => state.permission.addRouters,
     permissionFinished: state => state.permission.isFinished,
-    login: state => state.login
+    login: state => state.login,
+    account: state => state.account
   },
   mutations: {
-    login (state, roles) {
+    login (state, roles, account) {
+      console.log(account)
       let roleArray = new Array(0)
       for (let i = 0; i < roles.length; i++) {
         roleArray.push(roles[i].role)
       }
-      console.log(roleArray)
       Cookies.set('Token', roleArray, 10)
       state.login = true
+    },
+    setAccount (state, account) {
+      state.account = account
     }
   },
   actions: {

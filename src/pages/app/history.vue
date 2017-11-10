@@ -1,9 +1,9 @@
 <template>
   <div id="content">
-    <el-table :data="apkVersions" style="width:100%" v-on:expand="expand">
+    <el-table align="left" :data="apkVersions" style="width:100%" v-on:expand-change="expand">
       <el-table-column label="详情" type="expand">
-        <template slot-scope="scope">
-          <div class="markdown" v-html="scope.row.desc"></div>
+        <template slot-scope="props">
+          <div class="markdown" v-html="props.row.desc"></div>
         </template>
       </el-table-column>
       <el-table-column label="版本号" prop="version">
@@ -40,13 +40,17 @@ export default {
   methods: {
     initData () {
       let _this = this
-      findByName(this.$route.query.name).then(function (response) {
-        _this.apkVersions = response.data
-        console.log(_this.apkVersions)
-      })
-      .catch(function (err) {
-        console.log(err)
-      })
+      let appName = this.$route.query.name
+      if (!appName) {
+        this.$router.push('/app/main')
+      } else {
+        findByName(appName).then(function (response) {
+          _this.apkVersions = response.data
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+      }
     },
     download (url) {
       window.location.href = process.env.BASE_API + '/' + url

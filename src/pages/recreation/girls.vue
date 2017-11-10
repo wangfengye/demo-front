@@ -5,7 +5,7 @@
       <img class="img" :src="item.url" />
     </el-carousel-item>
   </el-carousel>
-  <el-button type="primary" icon="el-icon-search" @click="nextImages">刷新</el-button>
+  <el-button type="primary" icon="el-icon-refresh" @click="nextImages">刷新</el-button>
   <div class="flex">
       <el-card class="card"  :body-style="{ padding: '0px' }" v-for="item in images"  :key="item._id">
         <div class="card_content">
@@ -38,12 +38,10 @@ export default {
         _this.topImages = res.data.results
       })
     },
-    nextImages () {
-      let _this = this
+    async nextImages () {
       this.page++
-      getImages(10, this.page).then(res => {
-        _this.images = res.data.results
-      })
+      let res = await getImages(10, this.page)
+      this.images = res.data.results
     }
   }
 }

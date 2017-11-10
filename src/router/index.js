@@ -98,7 +98,7 @@ export const asyncRouterMap = [
       }, {
         path: '/recreation',
         name: '娱乐',
-        icon: 'el-icon-info',
+        icon: 'el-icon-star-on',
         menu: true,
         component: asyncLoad.load('recreation/index'),
         children: [

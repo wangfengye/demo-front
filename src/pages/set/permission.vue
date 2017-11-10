@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-table :data="permissions" stripe style="width: 100%">
+  <el-table align="left" :data="permissions" stripe style="width: 100%">
       <el-table-column label="编号" prop="id" width="180">
       </el-table-column>
       <el-table-column
@@ -20,7 +20,9 @@
           @click="handleDelete(scope.$index, scope.row)">删除</el-button>
       </template>
     </el-table-column>
-    <div slot="append" class="center"> <el-button @click="handleAdd()" class="center" type="text">添加权限</el-button></div>
+    <div slot="append">
+      <el-button @click="handleAdd" type="text" icon="el-icon-edit">添加权限</el-button>
+    </div>
   </el-table>
   <el-dialog
   title="添加权限"
@@ -86,9 +88,4 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.center {
-  widows: 100%;
-  text-align: center;
-  margin: 0 auto;
-}
 </style>

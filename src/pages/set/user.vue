@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-table :data="users" style="width: 100%">
+  <el-table align="left" :data="users" style="width: 100%">
     <el-table-column label="编号" prop="id" width="90"></el-table-column>
     <el-table-column label="账号" prop="account" width="360"></el-table-column>
     <el-table-column label="密码" prop="password" width="360"></el-table-column>
@@ -27,7 +27,7 @@
           @click="handleDelete(scope.row.id)">删除</el-button>
       </template>
     </el-table-column>
-   <div slot="append"><el-button @click="dialogVisible = true" class="center" type="text">添加角色</el-button></div> 
+    <div slot="append"> <el-button @click="dialogVisible = true" type="text" icon="el-icon-edit">添加用户</el-button></div>
   </el-table>
      <el-dialog title="添加用户" :visible.sync="dialogVisible" width="30%">
     <el-form>

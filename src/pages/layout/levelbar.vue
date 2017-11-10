@@ -1,11 +1,8 @@
 
 <template>
   <!-- 面包屑导航 -->
-  
   <el-breadcrumb separator="/">
-    <el-breadcrumb-item v-for="item in levelList" :key="item.name">
-      {{item.name}}
-    </el-breadcrumb-item>
+    <el-breadcrumb-item v-for="item in levelList" :key="item.name">{{ item.name }}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
@@ -13,7 +10,7 @@
 export default {
   data () {
     return {
-      levelList: null
+      levelList: ['主页']
     }
   },
   mounted () {

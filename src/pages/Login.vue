@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   data () {
     const validatePassword = (rule, value, callback) => {
@@ -57,10 +58,12 @@ export default {
       })
     },
     checkLogin () {
+      let _this = this
       if (this.loginForm != null) {
         console.log(this.loginForm)
         this.$store.dispatch('login', {account: this.loginForm.account, password: this.loginForm.password}).then(login => {
           if (login) {
+            Cookies.set('Token_account', _this.loginForm.account, 10)
             this.$message.success('登录成功')
             this.$router.push('/')
           } else {

@@ -1,6 +1,6 @@
 <template>
   <div>
-     <el-table :data="roles" stripe style="width: 100%">
+     <el-table align="left" :data="roles" stripe style="width: 100%">
       <el-table-column label="编号" prop="id" width="180">
       </el-table-column>
       <el-table-column
@@ -40,12 +40,12 @@
           @click="handleDelete(scope.row.id)">删除</el-button>
       </template>
     </el-table-column>
-    <div slot="append" class="center"> <el-button @click="dialogVisible = true" class="center" type="text">添加角色</el-button></div>
+    <div slot="append"> <el-button @click="dialogVisible = true" type="text" icon="el-icon-edit">添加角色</el-button></div>
   </el-table>
   <el-dialog
   title="添加角色"
   :visible.sync="dialogVisible"
-  width="10%">
+  width="30%">
 <el-form label-width="80px" :model="dialogForm">
   <el-form-item label="角色符">
     <el-input v-model="dialogForm.role"></el-input>
