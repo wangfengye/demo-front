@@ -106,6 +106,11 @@ export const asyncRouterMap = [
             path: 'girls',
             name: '每日美图',
             component: asyncLoad.load('recreation/girls')
+          },
+          {
+            path: 'firework',
+            name: '烟花',
+            component: asyncLoad.load('recreation/firework')
           }
         ]
       }

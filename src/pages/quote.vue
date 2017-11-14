@@ -16,7 +16,7 @@
       </el-table-column>
        <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button :value="scope.row.content" type="primary" size="mini">复制</el-button>
+          <el-button class="btn-copy" :value="scope.row.content" type="primary" size="mini">复制</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -75,11 +75,14 @@ export default {
     }
   },
   mounted () {
-    new Clipboard('.btn-left', {
+    let clipboard = new Clipboard('.btn-copy', {
       text: function (trigger) {
         console.log(trigger)
         return trigger.value
       }
+    })
+    clipboard.on('success', () => {
+      this.$message.success('复制成功')
     })
   },
   methods: {
@@ -90,9 +93,6 @@ export default {
         quoteHtml += '<span style="-webkit-animation: jump 1s linear ' + (i * 0.1) + 's infinite alternate; float: left;position: relative;">' + char + '</span>'
       }
       return quoteHtml
-    },
-    copy (s) {
-      console.log(s)
     }
   }
 }

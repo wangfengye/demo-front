@@ -1,9 +1,9 @@
 <template>
 <div id="sketch">
-  <h3>后台管理</h3>
-  <section>
-  vue,element
-  </section>
+  <h3>后台管理平台</h3>
+  <p>app管理</p>
+  
+  <p>vue, element-ui</p>
 </div>
 </template>
 <script>

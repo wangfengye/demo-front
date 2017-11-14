@@ -126,6 +126,6 @@ export default {
 
 <style lang='scss' scoped>
 .select{
-  width:56px
+  width:80px
 }
 </style>

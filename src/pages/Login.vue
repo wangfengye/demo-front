@@ -46,8 +46,6 @@ export default {
   },
   methods: {
     submitForm (formName) {
-     /*  this.$router.addRoutes(asyncRouterMap) */
-     // element示例,
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.checkLogin()

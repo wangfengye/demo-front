@@ -20,7 +20,7 @@
           class="tag" v-for="item in scope.row.permissions" :key="item.id">
           {{item.permission}}
         </el-tag>
-        <el-select  size="mini" v-model="value[scope.row.id]" placeholder="+ permission" @change="correlation(scope.row.id ,value[scope.row.id])">
+        <el-select class="select" size="mini" v-model="value[scope.row.id]" placeholder="+ permission" @change="correlation(scope.row.id ,value[scope.row.id])">
           <el-option
             v-for="item in options"
             v-if="!checkContain(item, scope.row.permissions)"
@@ -122,7 +122,6 @@ export default {
     },
     // 判断权限是否包含
     checkContain (target, list) {
-      console.log(list)
       for (let i = 0; i < list.length; i++) {
         let item = list[i]
         if (item.id === target.id) {
@@ -146,5 +145,8 @@ export default {
     line-height: 30px;
     padding-top: 0;
     padding-bottom: 0;
+  }
+  .select{
+    width: 80px;
   }
 </style>
