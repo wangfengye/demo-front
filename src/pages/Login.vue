@@ -19,10 +19,12 @@
             <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('loginForm')">登录</el-button>
         </el-form>
         <router-view/>
+        <canvas id="map"></canvas>
     </div>
 </template>
 
 <script>
+import FireworkMap from './recreation/firework.js'
 import Cookies from 'js-cookie'
 export default {
   data () {
@@ -43,6 +45,10 @@ export default {
         password: [{validator: validatePassword, trigger: 'blur,change'}]
       }
     }
+  },
+  mounted () {
+    let canvas = document.getElementById('map')
+    FireworkMap(canvas)
   },
   methods: {
     submitForm (formName) {
@@ -119,5 +125,10 @@ $light_gray:#eee;
     width: 400px;
     padding: 35px, 35px, 35px, 35px;
     margin: 120px auto;
+}
+#map {
+  width: 99vw;
+  height: 99vh;
+  margin: auto
 }
 </style>

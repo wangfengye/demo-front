@@ -4,7 +4,7 @@
  */
 <template>
   <div id="container">
-    <el-menu       background-color="#545c64"
+    <el-menu unique-opened background-color="#545c64" 
       text-color="#fff" class="el-menu-vertical-demo" :router="nav" mode="vertical" :default-active="$route.path" :collapse="collapse">
       <template v-for="item in addRouters">
         <template v-for="item in item.children">

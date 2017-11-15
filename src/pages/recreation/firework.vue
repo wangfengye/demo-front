@@ -1,7 +1,6 @@
 <template>
   <div id="firework">
     <canvas id="map"></canvas>
-    <p>firework</p>
   </div>
 </template>
 
@@ -30,6 +29,7 @@ export default {
   background-image:url('../../assets/images/home_bg.jpg');
 	margin: 0;
   padding: 0;
+  height: auto;
 }
 canvas {
   // 鼠标位于上方时的形状
