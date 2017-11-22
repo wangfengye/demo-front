@@ -1,8 +1,7 @@
 <template>
   <div id="app-main-container">
-    <el-row class="content" :hidden="isContentHidden">
-      <el-col :span="6" v-for="(o, index) in apks" :key="index">
-        <el-card :body-style="{ padding: '0px' }" class="card">
+    <div class="content" v-if="!isContentHidden">
+      <el-card :body-style="{ padding: '0px' }" class="card"  v-for="(o, index) in apks" :key="index">
           <div style="padding: 14px;">
             <p class="title">{{o.name}} <span class="hint">{{o.version}}</span></p>
             <div class="bottom clearfix">
@@ -11,8 +10,7 @@
             </div>
           </div>
         </el-card>
-      </el-col>
-    </el-row>
+    </div>
     <transition mode="out-in">
       <router-view></router-view>
     </transition>
@@ -72,8 +70,11 @@ export default {
 }
 
 .content {
-  position: absolute;
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 .title{
   font-size: 24px;
@@ -84,6 +85,7 @@ export default {
 }
 
 .card {
+  width: 360px;
   margin: 4px;
   text-align: left;
 }

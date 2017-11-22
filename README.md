@@ -49,3 +49,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 #### 11/9
 * 每日美图
+
+#### 11/22
+* 娱乐模块添加权限需求
+* 界面调整 ,apps展示也使用flex布局
+* 添加手机端自适应

@@ -51,6 +51,7 @@ export const asyncRouterMap = [
         path: '/quote',
         icon: 'el-icon-edit',
         name: '个性评论',
+        meta: {role: ['recreation']},
         menu: false,
         component: asyncLoad.load('quote')
       }, {
@@ -71,6 +72,16 @@ export const asyncRouterMap = [
           name: '添加应用',
           meta: {role: ['admin']},
           component: asyncLoad.load('app/add')
+        }, {
+          path: 'apply',
+          name: '账号申请',
+          meta: {role: ['ascend']},
+          component: asyncLoad.load('app/apply')
+        }, {
+          path: 'applyHistory',
+          name: '申请记录',
+          meta: {role: ['admin']},
+          component: asyncLoad.load('app/applyHistory')
         }]
       }, {
         path: '/set',
@@ -99,6 +110,7 @@ export const asyncRouterMap = [
         path: '/recreation',
         name: '娱乐',
         icon: 'el-icon-star-on',
+        meta: {role: ['recreation']},
         menu: true,
         component: asyncLoad.load('recreation/index'),
         children: [

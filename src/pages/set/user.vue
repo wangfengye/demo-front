@@ -1,15 +1,15 @@
 <template>
 <div>
   <el-table align="left" :data="users" style="width: 100%">
-    <el-table-column label="编号" prop="id" width="90"></el-table-column>
-    <el-table-column label="账号" prop="account" width="360"></el-table-column>
-    <el-table-column label="密码" prop="password" width="360"></el-table-column>
-    <el-table-column label="角色">
-       <template slot-scope="scope">
+    <el-table-column label="编号" prop="id"></el-table-column>
+    <el-table-column label="账号" prop="account"></el-table-column>
+    <el-table-column label="密码" prop="password"></el-table-column>
+    <el-table-column label="角色" min-width="120px">
+       <template slot-scope="scope" >
         <el-tag :type="item.role ==='admin'?'danger':'success'"
           closable @close="unCorrelation(scope.row.id, item.id)" 
-          class="tag" v-for="item in scope.row.roles" :key="item.id">
-          {{ item.role }}
+          class="select" v-for="item in scope.row.roles" :key="item.id">
+          {{ shortValue(item.role) }}
         </el-tag>
         <el-select size="mini" class="select" v-model="value[scope.row.id]" placeholder="+ role" @change="correlation(scope.row.id,value[scope.row.id])">
           <el-option v-for="item in roleOptions" 
@@ -19,7 +19,7 @@
         </el-select>
       </template>
     </el-table-column>
-     <el-table-column label="操作" width="180">
+     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button
           size="mini"
@@ -29,7 +29,7 @@
     </el-table-column>
     <div slot="append"> <el-button @click="dialogVisible = true" type="text" icon="el-icon-edit">添加用户</el-button></div>
   </el-table>
-     <el-dialog title="添加用户" :visible.sync="dialogVisible" width="30%">
+     <el-dialog title="添加用户" :visible.sync="dialogVisible" width="20rem">
     <el-form>
       <el-form-item label="账号">
         <el-input v-model="formUser.account"/>
@@ -119,6 +119,13 @@ export default {
         }
       }
       return false
+    },
+    shortValue (value) {
+      if (value.length > 5) {
+        return value.substr(0, 4) + '...'
+      } else {
+        return value
+      }
     }
   }
 }
@@ -126,6 +133,6 @@ export default {
 
 <style lang='scss' scoped>
 .select{
-  width:80px
+  width:5rem
 }
 </style>

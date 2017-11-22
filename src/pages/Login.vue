@@ -92,7 +92,8 @@ $light_gray:#eee;
     /* vh 相对高度(1vh=1% * 视口高度) */
     height: 100vh;
     width: 100%;
-    background-image:url('../assets/images/home_bg.jpg');
+    background-size: cover; 
+    background-image: url('../assets/images/home_bg.jpg');
   
 }
 .ac{
@@ -102,7 +103,7 @@ $light_gray:#eee;
 .tips {
     font-size: 14px;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .i-color {
@@ -113,7 +114,7 @@ $light_gray:#eee;
     font-size: 24px;
     font-weight: 400;
     color: $light_gray;
-    margin: 0px auto 40px auto;
+    margin: 0px auto 2.5rem auto;
     text-align: center;
     font-weight: bold;
 }
@@ -122,9 +123,10 @@ $light_gray:#eee;
     position: absolute;
     left: 0;
     right: 0;
-    width: 400px;
-    padding: 35px, 35px, 35px, 35px;
-    margin: 120px auto;
+    min-width: 16rem;
+    width: 40%;
+    padding: 2rem;
+    margin: 7.5rem auto;
 }
 #map {
   width: 99vw;

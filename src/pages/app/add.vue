@@ -1,6 +1,6 @@
 <template>
   <div id="add-container">
-    <el-form style="width:50%" ref="form" :model="form" label-width="80px">
+    <el-form style="max-width: 560px" ref="form" :model="form" label-width="80px">
       <el-form-item label="Apk 名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -21,7 +21,7 @@
       </el-form-item>
       <el-form-item label="更新日期">
         <el-col :span="11">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.updateDate" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.updateDate"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item>
@@ -33,6 +33,7 @@
 
 <script>
 import {saveApp} from '@/api/app'
+import {getTime} from '@/util/time.js'
 export default {
   data () {
     return {
@@ -46,19 +47,14 @@ export default {
         code: '',
         apkUrl: '',
         desc: '',
-        updateDate: ''
+        updateDate: getTime()
       }
     }
   },
   mounted () {
     this.mainThis = this
-    this.initData()
   },
   methods: {
-    initData () {
-      let date = new Date()
-      this.form.updateDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    },
     onSubmit () {
       saveApp(this.form).then(response => {
         console.info(response)

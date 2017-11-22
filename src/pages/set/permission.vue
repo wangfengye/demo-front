@@ -1,18 +1,17 @@
 <template>
 <div>
   <el-table align="left" :data="permissions" stripe style="width: 100%">
-      <el-table-column label="编号" prop="id" width="180">
+      <el-table-column label="编号" prop="id">
       </el-table-column>
       <el-table-column
       label="权限符"
-      prop="permission"
-      width="180">
+      prop="permission">
       </el-table-column>
      <el-table-column
       label="详情"
       prop="description">
       </el-table-column>
-    <el-table-column label="操作" width="180">
+    <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button
           size="mini"
@@ -27,8 +26,8 @@
   <el-dialog
   title="添加权限"
   :visible.sync="dialogVisible"
-  width="30%">
-<el-form label-width="80px" :model="dialogForm">
+  width="20rem">
+<el-form label-width="5rem" :model="dialogForm">
   <el-form-item label="权限符">
     <el-input v-model="dialogForm.permission"></el-input>
   </el-form-item>

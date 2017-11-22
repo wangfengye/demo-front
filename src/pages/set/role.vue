@@ -1,7 +1,7 @@
 <template>
   <div>
      <el-table align="left" :data="roles" stripe style="width: 100%">
-      <el-table-column label="编号" prop="id" width="180">
+      <el-table-column label="编号" prop="id">
       </el-table-column>
       <el-table-column
       label="角色"
@@ -10,15 +10,14 @@
       </el-table-column>
      <el-table-column
       label="角色名"
-      width="360"
-      prop="description">
+      prop="description" >
       </el-table-column>
-    <el-table-column label="权限">
-      <template slot-scope="scope">
+    <el-table-column label="权限" min-width="120px"> 
+      <template slot-scope="scope" class="item">
         <el-tag :type="item.permission ==='manage'?'danger':'success'"
-          closable @close="unCorrelation(scope.row.id, item.id)" 
-          class="tag" v-for="item in scope.row.permissions" :key="item.id">
-          {{item.permission}}
+          closable @close="unCorrelation(scope.row.id, item.id)"
+          class="select" v-for="item in scope.row.permissions" :key="item.id">
+          {{shortValue(item.permission)}}
         </el-tag>
         <el-select class="select" size="mini" v-model="value[scope.row.id]" placeholder="+ permission" @change="correlation(scope.row.id ,value[scope.row.id])">
           <el-option
@@ -32,7 +31,7 @@
         </el-select>
       </template>
     </el-table-column>
-     <el-table-column label="操作" width="180">
+     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button
           size="mini"
@@ -45,8 +44,8 @@
   <el-dialog
   title="添加角色"
   :visible.sync="dialogVisible"
-  width="30%">
-<el-form label-width="80px" :model="dialogForm">
+  width="20rem">
+<el-form label-width="5rem" :model="dialogForm">
   <el-form-item label="角色符">
     <el-input v-model="dialogForm.role"></el-input>
   </el-form-item>
@@ -129,24 +128,28 @@ export default {
         }
       }
       return false
+    },
+    shortValue (value) {
+      if (value.length > 5) {
+        return value.substr(0, 4) + '...'
+      } else {
+        return value
+      }
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
-.tag{
-  margin-left: 10px;
-}
 .button-new-tag {
-    margin-left: 10px;
-    width: 96px;
-    height: 32px;
-    line-height: 30px;
+  margin-left: 10px;
+    width: 4rem;
+    height: 2rem;
+    line-height: 2rem;
     padding-top: 0;
     padding-bottom: 0;
   }
   .select{
-    width: 80px;
+    width: 5rem;
   }
 </style>
