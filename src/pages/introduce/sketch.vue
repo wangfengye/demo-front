@@ -1,15 +1,14 @@
 <template>
 <div id="sketch">
-  <h3>后台管理平台</h3>
-  <p>app管理</p>
-  
-  <p>vue, element-ui</p>
+  <p v-for ="item in text" :key="item.key">{{ item.key + ":"}} <el-tag type="success">{{ item.value }}</el-tag></p>
 </div>
 </template>
 <script>
 export default {
   data () {
-    return { }
+    return {
+      text: [{key: 'Front-end', value: 'vue'}, {key: 'Back-end', value: 'spring-boot'}, {key: 'Front-end api', value: 'axios'}, {key: 'Component', value: 'element-ui'}]
+    }
   }
 }
 </script>

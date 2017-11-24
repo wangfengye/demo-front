@@ -3,7 +3,7 @@
  * 
  */
 <template>
-  <div id="container">
+  <div id="container" >
     <el-menu unique-opened background-color="#545c64" 
       text-color="#fff" class="el-menu-vertical-demo" :router="nav" mode="vertical" :default-active="$route.path" :collapse="collapse">
       <template v-for="item in addRouters">
@@ -51,11 +51,16 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-#container {
-  height: 100vh;
+ #container{
+  position: fixed;
+  top: 4rem;
+  bottom: 0;
+  z-index: 1000;
 }
+#container > ul{
+    height: 100%;
+  }
 .el-menu-vertical-demo{
-  height: 100vh;
   text-align:left;
 }
 </style>

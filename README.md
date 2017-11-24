@@ -54,3 +54,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * 娱乐模块添加权限需求
 * 界面调整 ,apps展示也使用flex布局
 * 添加手机端自适应
+
+#### 11/23
+* 处理qq浏览器无法打开 cause:不支持Promise,引入babel-polyfill的Promise
+
+#### 11/24
+* <link href="//cdn.webfont.youziku.com/webfonts/nomal/106962/28764/599c32fbf629d8117c40c36c.css" rel="stylesheet" type="text/css"> 英文艺术字体
+  > 使用方式 .class{font-family: AdineKirnberg-Scaf506e941a1d2;}
+* 优化布局,添加头部
+* 用户表添加改密功能
+* 表格中操作按钮添加图标
+* webpack 只能分析静态代码, 封装后的异步加载路由无法分模块打包, 使用原生的异步路由

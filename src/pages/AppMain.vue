@@ -1,24 +1,27 @@
 
 <template>
-  <div id="main-container" :class="{hideNav: isCollapse}">
-    <nav-menu class="nav" :collapse="isCollapse" />
-    <div class="main">
-      <el-menu mode="horizontal">
-        <hamburger class="hamburger" :isActive='isCollapse' :toggleClick="changeCollapse" />
-        <levelbar class="levelbar" />
-        <strong class="logout">{{account}}</strong>
-        <i  @click="handleClose"  class="el-icon-upload2 logout"></i>
-      </el-menu>
-      <router-view class="container" />
-    </div>
-  </div>
+  <el-container :class="{hideNav: isCollapse}">
+    <el-header style="padding: 0;height:100%">
+      <wf-header title="APP管理后台" :username="account" image="http://img.dongqiudi.com/uploads/avatar/2015/07/25/QM387nh7As_thumb_1437790672318.jpg"/>
+    </el-header>
+    <el-main class="main">
+      <nav-menu class="nav" :class="{nav_left: isCollapse}"  :collapse="isCollapse" />
+      <div class="content" :class="{content_left: isCollapse}">
+        <div class="levelbar">
+          <hamburger class="hamburger" :isActive='isCollapse' :toggleClick="changeCollapse" />
+          <levelbar class="levelbar" />
+        </div>
+        <router-view/>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
 import Hamburger from '../components/hamburger'
 import Levelbar from './layout/levelbar'
 import NavMenu from './layout/navMenu'
-import Cookies from 'js-cookie'
+import wfHeader from '@/components/wfHeader'
 import { mapGetters } from 'vuex'
 export default {
   data () {
@@ -28,7 +31,7 @@ export default {
     }
   },
   components: {
-    Hamburger, Levelbar, NavMenu
+    Hamburger, Levelbar, NavMenu, wfHeader
   },
   computed: {
     ...mapGetters(['account'])
@@ -37,73 +40,38 @@ export default {
     changeCollapse () {
       this.isCollapse = !this.isCollapse
       console.log(this.addRouters)
-    },
-    logout () {
-      Cookies.remove('Token')
-      location.reload()// 为了重新实例化vue-router对象 避免bug
-      console.log('login_role: ' + Cookies.get('Token'))
-    },
-    handleClose (done) {
-      this.$confirm('确认退出登录？')
-        .then(_ => {
-          this.logout()
-          done()
-        })
-        .catch(_ => {})
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
-#main-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  .nav {
-    z-index: 1001;
-    transition: width 0.28s linear;
-    width: 201px;
-    position: fixed;
+  .main{
+    margin-top: 4rem;
+    padding: 0;
+    z-index: 999
   }
-  .main {
-    transition: width 0.28s linear;
-   margin-left: 200px;
-   min-height: 100%;
+  .content{
+    margin-left:260px;
   }
-  &.hideNav {
-    .nav {
-      width: 64px;
+  .content_left{
+    margin-left:85px; 
+  }
+  .nav{
+    width: 240px;
+  }
+  .nav_left{
+     width: 65px;
+  }
+  .levelbar{
+    z-index: 999; 
+    display: flex;
+    flex-direction: row;
+    line-height: 2rem;
+    .hamburger{
+      padding-top: .3rem;
+      margin-right: 1rem;
     }
-    .main {
-      margin-left: 64px;
-    }
   }
-}
-
-.main {
-  height: 58px;
-  .hamburger {
-    line-height: 58px;
-    height: 58px;
-    float: left;
-    text-align: center;
-    padding-left: 10px;
-  }
-  .levelbar {
-    float: left;
-    font-size: 14px;
-    line-height: 50px;
-    margin-left: 10px;
-  }
-  .logout{
-    float: right;
-    margin-right:20px; 
-    line-height: 58px;
-  }
-}
-.container{
-    padding: 16px;
-}
 </style>
 

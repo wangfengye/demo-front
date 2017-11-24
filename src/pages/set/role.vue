@@ -34,8 +34,9 @@
      <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button
-          size="mini"
+          size="small"
           type="danger"
+          icon="el-icon-delete"
           @click="handleDelete(scope.row.id)">删除</el-button>
       </template>
     </el-table-column>

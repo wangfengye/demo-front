@@ -3,9 +3,14 @@
   <el-table align="left" :data="users" style="width: 100%">
     <el-table-column label="编号" prop="id"></el-table-column>
     <el-table-column label="账号" prop="account"></el-table-column>
-    <el-table-column label="密码" prop="password"></el-table-column>
+    <el-table-column label="密码" prop="password">
+      <template slot-scope="scope">
+        <el-input v-if="scope.row.id === editId" size="small" v-model="scope.row.password"></el-input>
+        <span v-else>{{ scope.row.password }}</span>
+      </template>
+    </el-table-column>
     <el-table-column label="角色" min-width="120px">
-       <template slot-scope="scope" >
+       <template slot-scope="scope">
         <el-tag :type="item.role ==='admin'?'danger':'success'"
           closable @close="unCorrelation(scope.row.id, item.id)" 
           class="select" v-for="item in scope.row.roles" :key="item.id">
@@ -21,9 +26,12 @@
     </el-table-column>
      <el-table-column label="操作">
       <template slot-scope="scope">
+        <el-button icon="el-icon-edit" type="primary" v-if="editId !== scope.row.id" size="small" @click="editId=scope.row.id"> 编辑</el-button>
+        <el-button icon="el-icon-check" type="success" v-else size="small" @click="changePassword(editId, scope.row.password)"> 完成</el-button>
         <el-button
-          size="mini"
+          size="small"
           type="danger"
+          icon="el-icon-delete"
           @click="handleDelete(scope.row.id)">删除</el-button>
       </template>
     </el-table-column>
@@ -53,6 +61,8 @@ import {getRoles} from '@/api/role.js'
 export default {
   data () {
     return {
+      // 当前编辑的ID 默认不会出现的ID -1
+      editId: -1,
       users: [],
       selectValue: {},
       // 可添加角色
@@ -87,6 +97,7 @@ export default {
       let _this = this
       changePassword(userId, newPassword).then(resp => {
         _this.init()
+        _this.editId = -1
       })
     },
     correlation (userId, roleId) {
