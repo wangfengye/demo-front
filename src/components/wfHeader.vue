@@ -6,29 +6,17 @@
           <img class="logo" :src="image">
           <span>{{username}}</span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="loginout">退出</el-dropdown-item>
+          <el-dropdown-item command="out">退出</el-dropdown-item>
         </el-dropdown-menu>   
       </el-dropdown>
     </div>
-    <el-dialog
-    title="提示"
-    :visible.sync="dialogVisible"
-    width="20rem">
-      <span>确认退出登录吗</span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="logout">确 定</el-button>
-  </span>
-</el-dialog>
   </div>
 </template>
 
 <script>
-import Cookies from 'js-cookie'
 export default {
   data () {
     return {
-      dialogVisible: false
     }
   },
   props: {
@@ -43,17 +31,16 @@ export default {
     image: {
       type: String,
       default: '../assets/images/home_bg.jpg'
+    },
+    out: {
+      type: Function,
+      default: null
     }
   },
   methods: {
-    logout () {
-      Cookies.remove('Token')
-      location.reload()// 为了重新实例化vue-router对象 避免bug
-      console.log('login_role: ' + Cookies.get('Token'))
-    },
     handleClose (command) {
-      if (command !== 'loginout') { return }
-      this.dialogVisible = true
+      if (command !== 'out') { return }
+      this.out()
     }
   }
 }
@@ -61,7 +48,7 @@ export default {
 
 <style lang='scss' scoped>
 #header{
-  z-index: 20222;
+  z-index: 1000;
   position: fixed;
   box-sizing: border-box;
   width: 100%;

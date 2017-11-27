@@ -57,8 +57,11 @@ export default {
   methods: {
     onSubmit () {
       saveApp(this.form).then(response => {
-        console.info(response)
-        this.$message.success('提交成功')
+        if (response.data.status === 200) {
+          this.$message.success('提交成功')
+        } else {
+          this.$message.error('提交失败')
+        }
       })
     },
     handlePreview (file) { // 可选参数, 点击已上传的文件链接时的钩子, 可以通过 file.response 拿到服务端返回数据
