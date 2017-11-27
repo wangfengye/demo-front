@@ -59,7 +59,7 @@
     <el-button type="primary" @click="createRole(dialogForm.role, dialogForm.description)">确 定</el-button>
   </span>
 </el-dialog>
-  </div>
+</div>
 </template>
 
 <script>

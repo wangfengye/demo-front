@@ -49,7 +49,6 @@ export default {
   .main{
     margin-top: 4rem;
     padding: 0;
-    z-index: 999
   }
   .content{
     margin-left:260px;

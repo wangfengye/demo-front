@@ -21,7 +21,7 @@ const role = r => require.ensure([], () => r(require('@/pages/set/role')), 'role
 const user = r => require.ensure([], () => r(require('@/pages/set/user')), 'user')
 const recreation = r => require.ensure([], () => r(require('@/pages/recreation/index')), 'recreation')
 const girls = r => require.ensure([], () => r(require('@/pages/recreation/girls')), 'girls')
-const firework = r => require.ensure([], () => r(require('@/pages/recreation/firework')), 'firework')
+const firework = r => require.ensure([], () => r(require('@/pages/recreation/firework.vue')), 'firework')
 
 Vue.use(Router)
 /**

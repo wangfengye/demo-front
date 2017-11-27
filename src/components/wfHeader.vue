@@ -10,6 +10,16 @@
         </el-dropdown-menu>   
       </el-dropdown>
     </div>
+    <el-dialog
+    title="提示"
+    :visible.sync="dialogVisible"
+    width="20rem">
+      <span>确认退出登录吗</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="logout">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 
@@ -18,6 +28,7 @@ import Cookies from 'js-cookie'
 export default {
   data () {
     return {
+      dialogVisible: false
     }
   },
   props: {
@@ -42,11 +53,7 @@ export default {
     },
     handleClose (command) {
       if (command !== 'loginout') { return }
-      this.$confirm('确认退出登录？')
-        .then(_ => {
-          this.logout()
-        })
-        .catch(_ => {})
+      this.dialogVisible = true
     }
   }
 }
@@ -54,7 +61,7 @@ export default {
 
 <style lang='scss' scoped>
 #header{
-  z-index: 1000;
+  z-index: 20222;
   position: fixed;
   box-sizing: border-box;
   width: 100%;

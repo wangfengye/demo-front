@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import FireworkMap from './recreation/firework.js'
+import FireworkMap from '@/util/firework.js'
 import Cookies from 'js-cookie'
 export default {
   data () {

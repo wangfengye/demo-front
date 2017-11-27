@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import FireworkMap from './firework.js'
+import FireworkMap from '@/util/firework.js'
 export default {
   data () {
     return {
