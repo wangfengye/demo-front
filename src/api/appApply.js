@@ -11,3 +11,7 @@ export function submitApply (userName, desc, imei, applyDate) {
     userName, desc, imei, applyDate
   })
 }
+
+export function deleteById (id) {
+  return fetch.delete(BASE_URL + '/' + id)
+}

@@ -53,6 +53,7 @@ export default {
   },
   mounted () {
     this.mainThis = this
+    this.form.name = this.$route.query.name
   },
   methods: {
     onSubmit () {

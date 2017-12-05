@@ -24,3 +24,7 @@ export function saveApp (form) {
     updateDate: form.updateDate
   })
 }
+
+export function deleteById (id) {
+  return fetch.delete('api/app/' + id)
+}

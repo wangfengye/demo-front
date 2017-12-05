@@ -65,3 +65,13 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * 用户表添加改密功能
 * 表格中操作按钮添加图标
 * webpack 只能分析静态代码, 封装后的异步加载路由无法分模块打包, 使用原生的异步路由
+
+#### 11/27
+* 处理退出dialog 显示过长
+* 处理蒙版覆盖 dialog(cause: dialog的父元素设置了z-index,且比 蒙版的z-index小)
+* 处理router中 firework路由失效(cause: 路由设置没有```.vue```后缀,且该目录下存在同名js)
+
+#### 12/5
+* 添加 删除修改功能
+* webpack 引入 babel-polyfill错误, 改为main.js引入
+* 仍存在问题,qq打开后有侧边栏无内容

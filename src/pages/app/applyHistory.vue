@@ -15,12 +15,21 @@
       </el-table-column>
       <el-table-column label="申请详情" prop="desc">
       </el-table-column>
+       <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button
+          size="small"
+          type="danger"
+          icon="el-icon-delete"
+          @click="handleDelete(scope.row.id)">删除</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 </div>
 </template>
 
 <script>
-import {findAll} from '@/api/appApply.js'
+import {findAll, deleteById} from '@/api/appApply.js'
 export default {
   data () {
     return {
@@ -31,6 +40,20 @@ export default {
     findAll().then(resp => {
       this.applys = resp.data
     })
+  },
+  methods: {
+    handleDelete (id) {
+      deleteById(id).then(res => {
+        this.$message.success('删除成功')
+        // 根据 数据的id 查数组下标
+        for (let i = 0; i < this.applys.length; i++) {
+          if (this.applys[i].id === id) {
+            this.applys.splice(i, 1)
+            return
+          }
+        }
+      })
+    }
   }
 
 }

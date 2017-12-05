@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/icon/iconfont.css'
 import Cookies from 'js-cookie'
 import Nanobar from 'Nanobar'
+import 'babel-polyfill'
 import store from './store/index'
 
 Vue.config.productionTip = false
@@ -29,6 +30,8 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     if (to.path === '/login') {
+      next()
+    } else if (to.path === '/test') {
       next()
     } else {
       next('/login')

@@ -6,3 +6,6 @@ export function findByName (name) {
     method: 'get'
   })
 }
+export function deleteById (id) {
+  return fetch.delete('api/appVersion/' + '/' + id)
+}

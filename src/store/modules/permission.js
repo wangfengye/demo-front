@@ -1,4 +1,4 @@
-import {simpleRouterMap, asyncRouterMap} from '../../router'
+import {simpleRouterMap, asyncRouterMap} from '@/router'
 
 /**
  * 通过meta.role 判断权限

@@ -9,7 +9,7 @@ const test = r => require.ensure([], () => r(require('@/pages/test')), 'test')
 const appMain = r => require.ensure([], () => r(require('@/pages/AppMain')), 'appMain')
 const sketch = r => require.ensure([], () => r(require('@/pages/introduce/sketch')), 'sketch')
 const quote = r => require.ensure([], () => r(require('@/pages/quote')), 'quote')
-const app = r => require.ensure([], () => r(require('@/pages/app/index')), 'app')
+const apk = r => require.ensure([], () => r(require('@/pages/app/index')), 'apk')
 const history = r => require.ensure([], () => r(require('@/pages/app/history')), 'history')
 const cards = r => require.ensure([], () => r(require('@/pages/app/cards')), 'cards')
 const add = r => require.ensure([], () => r(require('@/pages/app/add')), 'add')
@@ -69,12 +69,12 @@ export const asyncRouterMap = [
         menu: false,
         component: quote
       }, {
-        path: '/app',
+        path: '/apk',
         icon: 'el-icon-demo-android',
         name: 'APP管理',
         meta: {role: ['admin', 'ascend']},
         menu: true,
-        component: app,
+        component: apk,
         children: [{
           path: 'main',
           name: '软件列表',

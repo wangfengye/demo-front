@@ -10,11 +10,11 @@ function resolve(dir) {
 }
 
 module.exports = {
- /*  entry: {
+  entry: {
     app: './src/main.js'
-  }, */
+  },
   // 引入 balel-ployfill
-  entry: ["babel-polyfill", "./src/main.js"],
+ // entry: ["babel-polyfill", "./src/main.js"],
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

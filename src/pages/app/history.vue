@@ -19,15 +19,18 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button v-on:click="download(scope.row.apkUrl)" type="primary" size="mini">下载</el-button>
+          <el-button v-if="hasPermission()" v-on:click="deleteById(scope.row.id)" type="danger" size="mini">删除</el-button>
         </template>
       </el-table-column>
+       <div slot="append"> <el-button @click="toAdd" type="text" icon="el-icon-edit">新增版本</el-button></div>
     </el-table>
   </div>
   
 </template>
 
 <script>
-import {findByName} from '@/api/appVersion'
+import Cookies from 'js-cookie'
+import {findByName, deleteById} from '@/api/appVersion'
 export default {
   data () {
     return {
@@ -42,14 +45,14 @@ export default {
       let _this = this
       let appName = this.$route.query.name
       if (!appName) {
-        this.$router.push('/app/main')
+        this.$router.push('/apk/main')
       } else {
         findByName(appName).then(function (response) {
           _this.apkVersions = response.data
         })
-        .catch(function (err) {
-          console.log(err)
-        })
+          .catch(function (err) {
+            console.log(err)
+          })
       }
     },
     download (url) {
@@ -65,6 +68,24 @@ export default {
           row.desc = '<style>body li{list-style-type: disc!important;}</style>' + converter.makeHtml(text)
         })
       }
+    },
+    hasPermission () {
+      return Cookies.get('Token').indexOf('admin') >= 0
+    },
+    deleteById (id) {
+      deleteById(id).then(res => {
+        // 根据 数据的id 查数组下标
+        for (let i = 0; i < this.apkVersions.length; i++) {
+          if (this.apkVersions[i].id === id) {
+            this.apkVersions.splice(i, 1)
+            return
+          }
+        }
+      })
+    },
+    toAdd () {
+      let appName = this.$route.query.name
+      this.$router.push({path: '../add', query: { name: appName }})
     }
   }
 }
